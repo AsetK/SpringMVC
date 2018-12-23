@@ -19,7 +19,7 @@
 
     <form:errors path="student.*"/>
 
-    <form action="/test/someaction6" method="post">
+    <form action="/test/someaction7" method="post">
         <table>
             <tr><td>Student's Name:     </td>       <td><input type="text" name="studentName"/>     </td></tr>
             <tr><td>Student's Hobby:    </td>       <td><input type="text" name="studentHobby"/>    </td></tr>

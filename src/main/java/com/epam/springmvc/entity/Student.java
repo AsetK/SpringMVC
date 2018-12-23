@@ -1,9 +1,12 @@
 package com.epam.springmvc.entity;
 
+
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
 public class Student {
+    @Size(min = 2, max = 10)
     private String studentName;
     private String studentHobby;
     private Long studentMobile;
