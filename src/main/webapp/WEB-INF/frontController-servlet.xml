@@ -15,6 +15,25 @@
     <!-- JSR-303 support will be detected on classpath and enabled automatically -->
     <mvc:annotation-driven/>
 
+    <!-- Registers interceptor class. Intercepts all requests to DispatcherServlet -->
+    <!--
+    <mvc:interceptors>
+        <bean class="com.epam.springmvc.interceptor.DayOffWeekBasedAccessInterceptor"/>
+    </mvc:interceptors> -->
+
+    <!-- Registers interceptor class. Intercepts particular url -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/test/someaction4"/>
+            <bean class="com.epam.springmvc.interceptor.DayOffWeekBasedAccessInterceptor"/>
+        </mvc:interceptor>
+
+        <!-- Localization -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="siteLanguage"/>
+        </bean>
+    </mvc:interceptors>
+
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
             <value>/WEB-INF/</value>
@@ -23,5 +42,15 @@
             <value>.jsp</value>
         </property>
     </bean>
+
+    <!-- MessageSource from property file -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/studentmessages" />
+    </bean>
+
+
+    <!-- Localization -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/>
+
 
   </beans>

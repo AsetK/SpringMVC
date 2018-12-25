@@ -45,8 +45,9 @@ public class AnnotationBasedController {
     }
 
     @RequestMapping(value = "/someaction4", method = RequestMethod.GET)
-    public ModelAndView someMethod4() {
+    public ModelAndView someMethod4(@ModelAttribute("student") Student student1) {
         ModelAndView mv = new ModelAndView();
+       // mv.addObject("command",new Student());
         mv.setViewName("testjsp1");
 
         return mv;
@@ -85,7 +86,7 @@ public class AnnotationBasedController {
     }*/
 
     @RequestMapping(value = "/someaction7", method = RequestMethod.POST)
-    public ModelAndView someMethod7(@Valid @ModelAttribute("student") Student student1, BindingResult result) { // @Valid works cuz <mvc:annotation-driven/>
+    public ModelAndView someMethod7(@Valid @ModelAttribute("student") Student student1, BindingResult result) { // @Valid works cuz <mvc:annotation-driven/>, instead of this tag we can set validator in @InitBinder method
         if(result.hasErrors()) {
             ModelAndView mv = new ModelAndView("testjsp1");
             return mv;
@@ -96,4 +97,5 @@ public class AnnotationBasedController {
 
         return mv;
     }
+
 }
