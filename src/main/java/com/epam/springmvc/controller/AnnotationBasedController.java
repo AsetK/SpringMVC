@@ -47,7 +47,6 @@ public class AnnotationBasedController {
     @RequestMapping(value = "/someaction4", method = RequestMethod.GET)
     public ModelAndView someMethod4(@ModelAttribute("student") Student student1) {
         ModelAndView mv = new ModelAndView();
-       // mv.addObject("command",new Student());
         mv.setViewName("testjsp1");
 
         return mv;
@@ -92,6 +91,14 @@ public class AnnotationBasedController {
             return mv;
         }
 
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("testjsp2");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/someaction8", method = RequestMethod.GET)
+    public ModelAndView someMethod7() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("testjsp2");
 
