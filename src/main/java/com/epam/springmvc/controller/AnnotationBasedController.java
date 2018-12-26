@@ -10,6 +10,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,14 +86,16 @@ public class AnnotationBasedController {
     }*/
 
     @RequestMapping(value = "/someaction7", method = RequestMethod.POST)
-    public ModelAndView someMethod7(@Valid @ModelAttribute("student") Student student1, BindingResult result) { // @Valid works cuz <mvc:annotation-driven/>, instead of this tag we can set validator in @InitBinder method
+    public ModelAndView someMethod7(@Valid @ModelAttribute("student") Student student1, BindingResult result, HttpServletRequest request) { // @Valid works cuz <mvc:annotation-driven/>, instead of this tag we can set validator in @InitBinder method
         if(result.hasErrors()) {
             ModelAndView mv = new ModelAndView("testjsp1");
+
             return mv;
         }
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("testjsp2");
+        request.getSession().setAttribute("student", student1);
 
         return mv;
     }

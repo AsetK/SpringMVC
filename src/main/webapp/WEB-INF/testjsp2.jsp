@@ -14,6 +14,7 @@
 </head>
 <body>
     <a href="/test/someaction8?siteLanguage=en">English</a>|<a href="/test/someaction8?siteLanguage=ru">Русский</a>
+
     <h2>Test JSP 2</h2>
     <p>${name}
     <p>${hobby}
