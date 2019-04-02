@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/test") //now to invoke "someMethod1" request should like this - test/someaction1
@@ -46,9 +48,17 @@ public class AnnotationBasedController {
     }
 
     @RequestMapping(value = "/someaction4", method = RequestMethod.GET)
-    public ModelAndView someMethod4(@ModelAttribute("student") Student student1) {
+    public ModelAndView someMethod4(@ModelAttribute("student") Student student1, @RequestHeader HashMap<String, String> allHeaders, @CookieValue("JSESSIONID") String cookie) {
         ModelAndView mv = new ModelAndView();
+//        mv.addObject("student", new Student()); == @ModelAttribute("student") Student student1 if no data from client. @ModelAttribute - - For access to an existing attribute in the model or instantiated if not present.
         mv.setViewName("testjsp1");
+
+        for(Map.Entry<String, String> entry : allHeaders.entrySet())
+        {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+
+        System.out.println(cookie);
 
         return mv;
     }
